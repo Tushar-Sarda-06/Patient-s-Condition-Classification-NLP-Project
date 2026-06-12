@@ -99,7 +99,7 @@ scikit-learn — TF-IDF vectorization
 gensim (optional) — Word2Vec/FastText for comparison
 
 
-Machine Learning:
+**Machine Learning:**
 
 
 scikit-learn — RandomForest, preprocessing, metrics
@@ -108,64 +108,14 @@ lightgbm — LightGBM classifier
 scipy.sparse — sparse matrix operations
 
 
-Visualization:
+**Visualization:**
 
 
 matplotlib, seaborn — plots and heatmaps
 wordcloud — word clouds per condition
 
 
-
-🚀 Quick Start
-
-1. Clone & Install Dependencies
-
-bashgit clone https://github.com/Tushar-Sarda-06/patient-condition-classification.git
-cd patient-condition-classification
-
-pip install -r requirements.txt
-
-2. Download Data
-
-Download from UCI ML Repository:
-
-
-drugsComtrain.csv — training set (161K reviews)
-drugsComTest.csv — test set
-
-
-Place in data/ folder.
-
-3. Run the Notebook
-
-bashjupyter notebook Updated_Patient_s_Condn_Classfn.ipynb
-
-Runtime: ~45 minutes on Google Colab GPU (all cells)
-
-4. Run Inference on New Reviews
-
-pythonimport joblib
-import pandas as pd
-
-# Load models
-tfidf = joblib.load('models/tfidf_vectorizer.pkl')
-le = joblib.load('models/label_encoder.pkl')
-best_lgbm = joblib.load('models/best_lgbm.pkl')
-
-# Preprocess review
-review = "This medication worked amazingly! No side effects."
-review_tfidf = tfidf.transform([review])
-
-# Predict
-pred_encoded = best_lgbm.predict(review_tfidf)
-condition = le.inverse_transform(pred_encoded)[0]
-prob = best_lgbm.predict_proba(review_tfidf).max()
-
-print(f"Condition: {condition}")
-print(f"Confidence: {prob:.2%}")
-
-
-📊 Data Insights
+**📊 Data Insights**
 
 Condition Selection Process
 
@@ -176,7 +126,7 @@ Natural break point: 24.5% drop between rank 10 (ADHD: 3.3K) and rank 11 (Diabet
 Final selection: Top 9 conditions = 70K reviews (43.6% of dataset)
 
 
-Class Distribution
+**Class Distribution**
 
 Birth Control    28,788 reviews   (40.9%)
 Depression        9,069 reviews   (12.9%)
@@ -188,7 +138,7 @@ Insomnia          3,673 reviews   (5.2%)
 Weight Loss       3,609 reviews   (5.1%)
 ADHD              3,383 reviews   (4.8%)
 
-Imbalance ratio: 8.5x (manageable with class weighting)
+**Imbalance ratio: 8.5x (manageable with class weighting)**
 
 
 🔍 Key Insights
@@ -257,11 +207,7 @@ max_features=80000 — large vocabulary
 min_df=2 — removes rare tokens
 
 
-
-
-
 4. Model Training
-
 
 RandomForest
 XGBoost
@@ -270,7 +216,6 @@ Soft Voting Ensemble
 
 
 5. Evaluation
-
 
 Confusion matrix heatmap
 Per-class classification report
